@@ -1,11 +1,10 @@
 package com.example.helloworldwithdocker;
 
-import com.example.helloworldwithdocker.domain.Hello;
+import com.example.helloworldwithdocker.domain.NameCard;
 import com.example.helloworldwithdocker.persistence.ReactiveHelloRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,9 +24,9 @@ public class HelloWorldWithDockerApplication {
 
     @RequestMapping("/{name}")
     public Mono<String> home(@PathVariable("name") @NotBlank String name) {
-        return reactiveHelloRepository.save(new Hello(name))
+        return reactiveHelloRepository.save(new NameCard(name))
                 .switchIfEmpty(Mono.error(new RuntimeException()))
-                .flatMap(hello -> Mono.just(hello.toString()));
+                .flatMap(nameCard -> Mono.just(nameCard.toString()));
     }
 
     public static void main(String[] args) {

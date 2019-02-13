@@ -11,8 +11,8 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-@Document(collection = "hellos")
-public class Hello implements Serializable {
+@Document(collection = "name_cards")
+public class NameCard implements Serializable {
     @Id
     @Getter
     @Setter
@@ -22,7 +22,7 @@ public class Hello implements Serializable {
     @Setter
     private String name;
 
-    public Hello(@NotBlank String name) {
+    public NameCard(@NotBlank String name) {
         this.name = name;
     }
 }
